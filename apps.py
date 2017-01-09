@@ -45,7 +45,7 @@ def protected():
 @app.route('/diabetic_retinopathy/predictions',methods=['POST'])
 @jwt_required()
 def diabetic_retinopathy():
-    return '%s' % current_identity
+    return jsonify({'manikandan':"nbmnbmbmn"});
 
 
 

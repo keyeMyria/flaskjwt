@@ -38,7 +38,7 @@ angular.module('myApp').factory('AuthService',
           var token_auth = data.access_token
           // console.log(data.access_token+'---------'+status)
           if(status === 200 && data.access_token){
-            var token_auth = data.access_token
+            var token_auth = data.access_token  
             console.log(token_auth)
             user = true;
             deferred.resolve();

@@ -2,7 +2,6 @@
 angular.module('myApp').controller('loginController',
   ['$scope', '$location', 'AuthService',
   function ($scope, $location, AuthService) {
-
     $scope.login = function () {
 
       // initial values
@@ -38,6 +37,7 @@ angular.module('myApp').controller('logoutController',
       // call logout from service
       AuthService.logout()
         .then(function () {
+          sessionStorage.clear();
           $location.path('/login');
         });
 

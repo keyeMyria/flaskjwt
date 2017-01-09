@@ -1,9 +1,8 @@
-// var token_auth = 'manikandan'
-var token_auth;
+
 var app=angular.module('myApp');
 app.factory('AuthService',
   ['$q', '$timeout', '$http',
-  function ($q, $timeout, $http) {
+  function ($q, $timeout, $http){
 
     // create user variable
     var user = null;
@@ -39,13 +38,8 @@ app.factory('AuthService',
         .success(function (data, status) {
           // var token_auth = data.access_token
           // console.log(data.access_token+'---------'+status)
-          if(status === 200 && data.access_token){
-
-            token_auth = data.access_token;
-          // token_auth= token_auth == undefined ?$sessionStorage.token_auth :token_auth;
-            // $sessionStorage.token_auth=data.access_token;
-            // $rootScope.token_auth= data.access_token
-            console.log(token_auth)
+          if(status === 200 && data.access_token){                    
+           sessionStorage.setItem('auth_token',data.access_token);            
             user = true;
             deferred.resolve();
           } else {
@@ -167,7 +161,7 @@ $(document).ready(function(){
 
 
 
-                        alert(token_auth)
+                    
 
 
             function isBrowserSupported () {
@@ -217,6 +211,8 @@ $(document).ready(function(){
                 var imageInput = document.getElementById('image');
                 var image = imageInput.files[0];
                 var form_data = new FormData();
+                var token_auth=window.sessionStorage.getItem("auth_token");
+                alert("token_auth"+token_auth)
                 form_data.append('image', image);
                 // send ajax POST request to start background job
 
@@ -229,7 +225,7 @@ $(document).ready(function(){
                     contentType: false,
                     cache: false,
                     beforeSend: function (xhr) {
-                        xhr.setRequestHeader ("Authorization", "JWT "+token_auth);
+                        xhr.setRequestHeader ("Authorization", "JWT "+ token_auth);
                     },
                     processData: false,
                     success: function(data) {
@@ -239,7 +235,7 @@ $(document).ready(function(){
                         }
                         // var status_url = request.getResponseHeader('Location');
                         // http_status: 202(In process)
-                        update_progress(data['taskstatus'], nanobar, init_status_div[0]);
+                        // update_progress(data['taskstatus'], nanobar, init_status_div[0]);
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
                        alert(errorThrown + ': ' + 'This image could not be processed. Please try another.');
