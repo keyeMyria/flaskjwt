@@ -8,6 +8,23 @@
 
 .dataleft{
     text-align: right;
+    /*margin-right: -12.1rem !important;*/
+}
+.dataleft .logout-btn{
+    font-size: 12px;
+    height: 32px;
+    padding: 0 1rem;
+}
+
+@media(min-width:1024px) {
+    .dataleft{
+        margin-right: -9rem !important;
+    }
+}
+@media(min-width:1300px) {
+    .dataleft{
+        margin-right: -12.1rem !important;
+    }
 }
 
 </style>
@@ -15,7 +32,7 @@
 
 
 <div class="row dataleft" ng-controller="logoutController">
-  <a ng-click='logout()' class="btn btn-default">Logout</a>
+  <a ng-click='logout()' class="btn btn-default logout-btn">Logout</a>
 </div>
 
 

@@ -2,6 +2,8 @@ from flask import Flask,render_template,jsonify,session
 from flask_jwt import JWT, jwt_required, current_identity
 from werkzeug.security import safe_str_cmp
 
+
+
 class User(object):
     def __init__(self, id, username, password):
         self.id = id
@@ -13,7 +15,7 @@ class User(object):
 
 users = [
     User(1, 'mani', 'mani'),
-    User(2, 'user2', 'abcxyz'),
+    User(2, 'raja', 'raja'),
 ]
 
 username_table = {u.username: u for u in users}
