@@ -233,6 +233,8 @@ $(document).ready(function(){
                         alert("The image size should be above 512 * 512 pixels for prediction.")
                         return false;
                         }
+
+                        alert(data)
                         // var status_url = request.getResponseHeader('Location');
                         // http_status: 202(In process)
                         // update_progress(data['taskstatus'], nanobar, init_status_div[0]);
