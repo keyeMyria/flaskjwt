@@ -29,11 +29,11 @@ pip install -r requirement.txt
 
 ## Run code here
 ```elixir
-git clone https://github.com/manioftony/newslive.git
-cd newslive
+git clone https://github.com/manioftony/flaskjwt
+cd flaskjwt
 python app.py
 
-link:http://127.0.0.1:5000/
+http://127.0.0.1:5000/
 ```
 
 ## culr command
