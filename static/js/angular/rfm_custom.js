@@ -1,7 +1,8 @@
-// var token_auth = 'manikandan'
-angular.module('myApp').factory('AuthService',
+
+var app=angular.module('myApp');
+app.factory('AuthService',
   ['$q', '$timeout', '$http',
-  function ($q, $timeout, $http) {
+  function ($q, $timeout, $http){
 
     // create user variable
     var user = null;
@@ -35,13 +36,10 @@ angular.module('myApp').factory('AuthService',
         // handle success
         
         .success(function (data, status) {
-          var token_auth = data.access_token
-          sessionStorage.setItem('auth_token',data.access_token);
-          var token_auth=window.sessionStorage.getItem("auth_token");
-          console.log(data.access_token+'---------'+status)
-          if(status === 200 && data.access_token){
-            var token_auth = data.access_token  
-            console.log(token_auth)
+          // var token_auth = data.access_token
+          // console.log(data.access_token+'---------'+status)
+          if(status === 200 && data.access_token){                    
+           sessionStorage.setItem('auth_token',data.access_token);            
             user = true;
             deferred.resolve();
           } else {
@@ -137,3 +135,41 @@ angular.module('myApp').factory('AuthService',
     }
 
 }]);
+
+
+$(document).ready(function(){
+
+
+            'use strict';
+              var token_auth=window.sessionStorage.getItem("auth_token");
+
+              if (token_auth){
+
+
+
+
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/diabetic_retinopathy/predictions',
+                    // data : form_data,
+                    contentType: false,
+                    cache: false,
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader ("Authorization", "JWT "+ token_auth);
+                    },
+                    processData: false,
+                    success: function(data) {
+                      console.log('successfully logged in')
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                       alert(errorThrown + ': ' + 'This image could not be processed. Please try another.');
+                       $(init_status_div[0].childNodes[2]).text('The uploaded image could not be processed. Please try another.');
+                    }
+                });
+
+      }
+
+
+    });
+
